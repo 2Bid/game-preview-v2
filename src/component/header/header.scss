@@ -1,0 +1,16 @@
+.header{
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     width: 100%;
+     background-color: #1a1a1a;
+     position: relative;
+
+     &__logo--container{
+          width: 50%;
+
+          img{
+               width: 100%;
+          }
+     }
+}

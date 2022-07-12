@@ -1,0 +1,33 @@
+.card{
+     width: calc(33.33% - 40px);
+    margin: 20px;
+    position: relative;
+    border-radius: 20px 20px 5px 5px;
+    overflow: hidden;
+    height: 250px;
+
+    &__container{
+          display: flex;
+          flex-wrap: wrap;
+     }
+
+     &__img-container{
+          display: block;
+          height: 100%;
+          width: 100%;
+
+          img{
+               width: 100%;
+               height: 100%;
+               object-fit: cover;
+          }
+     }
+
+     &__infos{
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          background-color: rgba(185, 195, 199, 40%);
+          padding: 10px 20px;
+     }
+}

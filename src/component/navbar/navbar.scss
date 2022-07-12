@@ -1,0 +1,67 @@
+.navbar{
+     &__container{
+          position: fixed;
+          top: 0;
+          bottom: 0;
+          right: 0;
+          width: 30%;
+          min-width: 350px;
+          height: 100vh;
+          transform: translateX(100%);
+          background-color: black;
+          transition: 0.4s;
+          z-index: 99;
+
+          &--active{
+               transform: translateX(0);
+          }
+     }
+
+     &__close{
+          color: white;
+          cursor: pointer;
+          font-size: 25px;
+          width: 100%;
+          text-align: center;
+          display: block;
+          margin-bottom: 30px;
+     }
+
+     &__nav{
+          display: flex;
+          width: 80%;
+          flex-direction: column;
+          align-items: end;
+          justify-content: center;
+     }
+     
+}
+
+.burger{
+     margin-right: 15px;
+     width: 35px;
+     height: 35px;
+     position: relative;
+     display: block;
+     cursor:pointer;
+     border-bottom: 5px solid white;
+
+     &::before,
+     &::after{
+          content: "";
+          position: absolute;
+          left: 0;
+          right: 0;
+          height: 5px;
+          width: 35px;
+          background-color: white;
+     }
+
+     &::before{
+          top: 0;
+     }
+
+     &::after{
+          bottom: 10px;
+     }
+}
