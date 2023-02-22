@@ -1,22 +1,22 @@
 import React from 'react'
-import Card from '../card/Card'
+import CardContainer from '../cardContainer/CardContainer'
 
 import "../../css/slider/slider.css"
 
-export default function Slider(props) {
+export default function Slider({titre, imgs}) {
   return (
-    <div className='slider__container'>
-     <span className='slider__arrow--prev'></span>
+    <section className='slider__container'>
+          <div className='slider__titre-container'>
+               <h3 className='slider__titre'>{titre}</h3>
+          </div>
 
-     <div className='slider'>
-          {
-               props.imgs.map((img)=>{
-                    return <Card />
-               })
-          }
-     </div>
+          <span className='slider__arrow--prev'></span>
 
-     <span className='slider__arrow--next'></span>
-    </div>
+          <div className='slider'>
+               <CardContainer loop={imgs}/>
+          </div>
+
+          <span className='slider__arrow--next'></span>
+    </section>
   )
 }

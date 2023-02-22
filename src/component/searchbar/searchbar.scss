@@ -1,4 +1,28 @@
 .searchbar{
-     text-align: center;
      padding: 20px 0;
+
+     &__input{
+          position: relative;
+          background-color:  transparent;
+          width: 100%;
+          border: none;
+          border-bottom: 2px solid #f1f1f1;
+          outline: none;
+          font-size: 3.9rem;
+          color: #f1f1f1;
+
+          &::after{
+               content: "";
+               height: 1px;
+               background-color: red;
+               position: absolute;
+               left: 0;
+               width: 100%;
+               z-index: 99;
+          }
+     }
+
+     #text{
+          display: none;
+     }
 }

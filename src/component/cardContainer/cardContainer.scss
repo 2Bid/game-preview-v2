@@ -1,0 +1,13 @@
+.card__container{
+     margin-top: 30px;
+
+     .searchbar{
+          width: 100%;
+     }
+}
+
+.slider .card__container{
+     flex-wrap: nowrap;
+     width: 550vw;
+     margin-top: 25px;
+}

@@ -1,35 +1,43 @@
-import React, { useEffect, useState } from 'react'
-import CardContainer from '../../component/cardContainer/CardContainer'
-import Header from '../../component/header/Header'
+import React from 'react'
 import Loader from '../../component/loader/Loader'
-import Pagination from '../../component/pagination/Pagination'
 import Searchbar from '../../component/searchbar/Searchbar'
+import Slider from '../../component/slider/Slider'
+import { useLoadOrderingGameData } from '../../hooks/loadOrderingGameData'
 
-/* Import Hooks */
-import { useLoadHomeData } from '../../hooks/loadHomeData'
+import "./../../css/home/home.css"
+
 
 export default function Home() {
 
-    const [pagination, setPagination] = useState(1)
+  const loadGameRelease = useLoadOrderingGameData("released")
+  const gameReleaseResults = loadGameRelease.data.results
 
-    const page1 = useLoadHomeData(pagination)
-    const resultPerPage = page1.data.results
-//     console.log(page1.data)
+  const loadGameOrdering = useLoadOrderingGameData("metacritic") // ordered ne marche pas ?
+  const gameOrdering = loadGameOrdering.data.results
+
+
 
   return (
-    <>
-          { 
-               !page1.loading &&
-               !page1.error ?
-                    <div className='home'>
-                         <Header />
-                         <Searchbar/>
-                         <CardContainer loop={resultPerPage}/>
-                         <Pagination prev={page1.data.previous} next={page1.data.next}/>
-                    </div>
-               :
-               <Loader />
-          }
-    </>
+    <div className='home'>
+      <Searchbar/>
+
+      {/* Chargement du premier slider */}
+      {
+      !loadGameRelease.loading &&
+      !loadGameRelease.error ? 
+        <Slider titre="Découvrez les dernières nouveautés" imgs={gameReleaseResults}/>
+      :
+        <Loader/>
+      }
+
+      {/* Chargement du deuxieme slider */}
+      {
+      !loadGameOrdering.loading &&
+      !loadGameOrdering.error ? 
+        <Slider titre="Les mieux notés" imgs={gameOrdering}/>
+      :
+        <Loader/>
+      }    
+    </div>
   )
 }

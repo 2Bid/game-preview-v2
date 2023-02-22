@@ -4,23 +4,20 @@ import { useEffect, useState } from "react";
  * @param {*} id 
  * @returns {{
      * loading : boolean,
-     * url : string,
      * data : [],
      * error : any
  *   }}
  */
-export const useLoadHomeData = ()=> {
+export const useLoadOrderingGameData = (ordering)=> {
      const [loading,setLoading] = useState(true)
      const [data,setData] = useState([])
-     const [url, setUrl] = useState('')
      const [error,setError] = useState(undefined)
      
      useEffect(()=>{
           const fetchData = () =>{
-               fetch("https://api.rawg.io/api/games?ordering=released&key=b07cbf09c55746d4a5b6500e38dacf21")
+               fetch(`https://api.rawg.io/api/games?ordering=${ordering}&key=b07cbf09c55746d4a5b6500e38dacf21`)
                .then(response =>{
-                    setUrl(response.url)
-                    return response.json()                    
+                    return response.json()
                })
                .then((mainData)=>{
                     setData(mainData)
@@ -39,7 +36,6 @@ export const useLoadHomeData = ()=> {
 
      return{
           loading,
-          url,
           data,
           error
      }

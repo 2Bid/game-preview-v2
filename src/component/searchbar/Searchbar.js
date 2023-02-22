@@ -1,18 +1,35 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
-import "../../css/searchbar/searchbar.css"
-import { useLoadSearchGame } from '../../hooks/loadSearchGame'
 import CardContainer from '../cardContainer/CardContainer'
 
-export default function Searchbar() {
-     let [inputValue, setInputValue] = useState("")  
+import "../../css/searchbar/searchbar.css"
 
+/* Import Hooks */
+import { useLoadSearchGame } from '../../hooks/loadSearchGame'
+import Loader from '../loader/Loader'
+import FiltersContainer from '../filtersContainer/FiltersContainer'
+
+
+export default function Searchbar() {
+
+     let [inputValue, setInputValue] = useState('')
      const recherche =  useLoadSearchGame(inputValue)
 
      function onInputChange(e){
           setInputValue(e.target.value)
      }
+
+     const [actualResult, setActualResult] = useState(false)
      
+     // recherche les jeux si l'input contient au moins deux caractere, sinon rien n'est affiché
+     useEffect(()=>{
+          if(inputValue.length > 2 && recherche?.data?.results?.length){
+               setActualResult(recherche.data.results)
+          }
+          else{
+               setActualResult(false)
+          }
+     },[inputValue])
 
      return (
      <div className='searchbar'>
@@ -20,17 +37,17 @@ export default function Searchbar() {
                onChange={(e)=>onInputChange(e)} 
                value={inputValue}
                placeholder="Recherchez un jeu"
-          >
-          </input>
+               className='searchbar__input'
+          />
+          <>
           {
-               inputValue.length > 1 &&
-               recherche?.data?.results?.length  ?
-               <div>
-                    <CardContainer loop={recherche.data.results} />
-               </div>
-               :
-               <></>
+               actualResult.length && <CardContainer loop={actualResult} />
           }
+          {/* Fait apparaitre le menu des filtres si la recherche est activé */}
+          {
+               actualResult.length && <FiltersContainer />
+          }
+          </>
      </div>
      )
 }

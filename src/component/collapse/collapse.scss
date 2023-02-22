@@ -1,0 +1,15 @@
+.collapse{
+
+    &__container{
+        overflow: hidden;
+    }
+    
+    &__content{
+        transform: translateY(-110%);
+        transition: 0.3s;
+
+        &.active{
+            transform: translateY(0);
+        }
+    }
+}
