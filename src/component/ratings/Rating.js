@@ -1,35 +1,59 @@
 import React, { useEffect, useState } from 'react'
+import '../../css/ratings/ratings.css'
 
-import {ReactComponent as Rating} from "../../images/invader.svg"
+import {ReactComponent as Rating} from "../../images/invaderFull.svg"
+import {ReactComponent as RatingEmpty} from "../../images/invader.svg"
+import LinearRating from './linearRating/LinearRating'
 
-export default function Ratings(props) {
+export default function Ratings({rating}) {
 
-  const maxRating = 5
- // log 4.47
-  const ratingfull = Math.trunc(props.rating) //log 4
-  const ratingUnfull = props.rating.toString().split('.')[1] //log 47
+  const ratingEntire = Math.trunc(rating)
+  const emptyRating = 5 - Math.ceil(rating)
+  const ratingDecimal = rating.toString().split('.')[1]
 
   const [integerRating, setIntegerRating] = useState([])
 
   useEffect(()=>{
-    for (let i = 0; i < ratingfull; i++) {
-      console.log(i + 1)
+    for (let i = 0; i < ratingEntire; i++) {
       setIntegerRating([...integerRating, integerRating.push(i + 1)])
-      console.log(integerRating)
     }
   },[])
 
   return (
     <div className='ratings__container'>
       {
-        integerRating.map(()=>{
+        integerRating?.map((rate)=>{
           return(
-            <div className='rating__containers'>
+            <div className='rating' key={rate}>
               <Rating />
             </div>
           )
         })
       }
+      
+      <LinearRating value={ratingDecimal}/>
+
+      {
+        emptyRating >= 2 ?
+          emptyRating.map((rate)=>{
+            return(
+              <div className='rating' key={rate}>
+                <RatingEmpty />
+              </div>
+            )
+          })
+        :
+        <></>
+      }
+      {
+        emptyRating === 1 ?
+          <div className='rating'>
+            <RatingEmpty />
+          </div>
+        :
+        <></>
+      }
+      
     </div>
   )
 }
