@@ -11,3 +11,21 @@
      width: 550vw;
      margin-top: 25px;
 }
+
+@media screen and (max-width:1000px) {
+     .slider .card__container{
+          width: 900vw;
+     }
+}
+
+@media screen and (max-width:750px) {
+     .slider .card__container{
+          width: 1100vw;
+     }
+}
+
+@media screen and (max-width:450px) {
+     .slider .card__container{
+          width: 1500vw;
+     }
+}

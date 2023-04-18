@@ -24,3 +24,14 @@
           }
      }
 }
+
+@media screen and (max-width:800px) {
+     .gallery__container {
+          padding: 20px;
+     }
+
+     .gallery__image-container{
+          width: calc(50% - 20px);
+          margin: 10px;
+     }
+}
