@@ -1,21 +1,31 @@
 import { useEffect, useState } from "react";
 /**
  * Chargement des données principales
- * @param {string} value
+ * @param {string} filterType
+ * @param {string, number} filterValue
+ * @param {string} inputValue
  * @returns {{
      * loading : boolean,
      * data : [],
      * error : any
  *   }}
  */
-export const useLoadSearchGame = (value)=> {
+export const useLoadSearchGameWithFilter = (filterType, filterValue, inputvalue)=> {
+     
      const [loading,setLoading] = useState(true)
      const [data,setData] = useState([])
      const [error,setError] = useState(undefined)
      
      useEffect(()=>{
+          let filter = `${filterType}=${filterValue}`
+
+          if(filterValue){
+               console.log(filterValue)
+               filter = `${filter}&${filterType}=${filterValue}`
+          }
+
           const fetchData = () =>{
-               fetch(`https://api.rawg.io/api/games?search=${value}&page_size=21&key=b07cbf09c55746d4a5b6500e38dacf21`)
+               fetch(`https://api.rawg.io/api/games?${filter}&search=${inputvalue}&page_size=21&key=b07cbf09c55746d4a5b6500e38dacf21`)
                .then(response =>{
                     return response.json()
                })
@@ -29,9 +39,10 @@ export const useLoadSearchGame = (value)=> {
                     setLoading(false)
                })
           }
-     
+          if(!filterValue) return
+          
           fetchData()
-     }, [value])
+     }, [filterType, filterValue, inputvalue])
 
 
      return{

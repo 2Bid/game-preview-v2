@@ -10,7 +10,7 @@
      }
 
      &__title{
-          font-size: 50px;
+          font-size: clamp(1.5rem, 3rem, 3rem);
           font-weight: 600;
           height: 30vh;
           display: flex;
@@ -87,5 +87,9 @@
 
      .detailGame .tags__container, .detailGame .platforms__container{
           max-width: none;
+     }
+
+     .detailGame__infos {
+          gap: 20px;
      }
 }

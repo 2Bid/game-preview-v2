@@ -27,16 +27,12 @@ export default function Pagination(props) {
   return (
     <div className='pagination'>
         {/* {
-            props.prev ?
+            props.prev &&
             <p onClick={PrevResult(PrevResult.url)}>&#60;</p>
-            :
-            <></>
         }
         {
-            props.next ?
+            props.next &&
             <p onClick={NextResult(nextUrl)}>&gt;</p>
-            :
-            <></>
         } */}
     </div>
   )

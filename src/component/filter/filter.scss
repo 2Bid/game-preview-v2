@@ -1,4 +1,22 @@
 .filter{
-    &__container{
+    &__container:not(:last-child) {        
+        &::after{
+            content: "";
+            width: 250px;
+            max-width: 80%;
+            height: 1px;
+            background-color: #ededed;
+            display: block;
+            margin-top: 25px;
+        }
+    }
+
+    &__title {
+        margin-bottom: 15px;
+        text-transform: uppercase;
+    }
+
+    &__item{
+        margin-bottom: 5px;
     }
 }

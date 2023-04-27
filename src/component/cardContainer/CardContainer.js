@@ -7,8 +7,7 @@ export default function CardContainer(props) {
   return (
     <div className='card__container'>
       {
-        props.loop.length ?
-	   
+        props.loop &&
           props.loop.map((game)=>{
             return (
               <Card 
@@ -19,8 +18,6 @@ export default function CardContainer(props) {
               background={game.background_image}/>
             )
           })
-        :
-        <></>
       }
     </div>
   )

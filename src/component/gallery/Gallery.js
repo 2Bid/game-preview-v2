@@ -62,9 +62,9 @@ export default function Gallery(props) {
   return (
     <>
     {
-     !loadingScreenshots.loading &&
+     (!loadingScreenshots.loading &&
      !loadingScreenshots.error &&
-     screenshots.length > 0 ?
+     screenshots.length > 0) &&
      <div className='gallery__container'>
           {
           screenshots.map((img, index)=>{
@@ -89,7 +89,6 @@ export default function Gallery(props) {
                />
           }
      </div>
-     : <></>
     }
     </>
   )

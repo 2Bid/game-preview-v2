@@ -34,24 +34,20 @@ export default function Ratings({rating}) {
       <LinearRating value={ratingDecimal}/>
 
       {
-        emptyRating >= 2 ?
-          emptyRating.map((rate)=>{
-            return(
-              <div className='rating' key={rate}>
-                <RatingEmpty />
-              </div>
-            )
-          })
-        :
-        <></>
+        emptyRating >= 2 &&
+        emptyRating.map((rate)=>{
+          return(
+            <div className='rating' key={rate}>
+              <RatingEmpty />
+            </div>
+          )
+        })
       }
       {
-        emptyRating === 1 ?
-          <div className='rating'>
-            <RatingEmpty />
-          </div>
-        :
-        <></>
+        emptyRating === 1 &&
+        <div className='rating'>
+          <RatingEmpty />
+        </div>
       }
       
     </div>

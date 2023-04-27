@@ -29,16 +29,14 @@ export default function DetailGame() {
                          {data.name}
                     </h1>
                     <div className='detailGame__infos'>
+                         {
+                              data.rating.length && <Ratings rating={data.rating} />
+                         }
                          <div className='detailGame__infos--top'>
-                              {
-                                   data.rating ?
-                                   <Ratings rating={data.rating} />
-                                   :
-                                   <></>
-                              }
+                              
                               {
                                    data.developers.length
-                                   ?
+                                   &&
                                    <div className='detailGame__developers--container'>
                                         <h4>Développé par : </h4>
                                         <div className='detailGame__developers'>
@@ -49,12 +47,10 @@ export default function DetailGame() {
                                              }
                                         </div>
                                    </div>
-                                   :
-                                   <></>
                               }
                               {
                                    data.platforms.length
-                                   ?
+                                   &&
                                    <div className='platforms__container'>
                                         <h4>Plateformes :</h4>
                                         <div className='platforms__list'>
@@ -65,13 +61,11 @@ export default function DetailGame() {
                                              }
                                         </div>
                                    </div>
-                                   :
-                                   <></>
                               }
                          </div>
                          <div className='detailGame__infos--bottom'>
                               {
-                                   data.genres.length
+                                   data.genres?.length
                                    ?
                                    <div className='genres__container'>
                                         <h4>Genres :</h4>
@@ -83,12 +77,11 @@ export default function DetailGame() {
                                              }
                                         </div>
                                    </div>
-                                   :
-                                   <></>
+                                   :<></>
                               }
                               {
                                    data.tags.length
-                                   ?
+                                   &&
                                    <div className='tags__container'>
                                         <h4>Tags :</h4>
                                         <div className='tags__list'>
@@ -99,33 +92,28 @@ export default function DetailGame() {
                                              }
                                         </div>
                                    </div>
-                                   : 
-                                    <></>
                               }
                          </div>
                     </div>
                     
                     {
-                         data.description_raw.length
-                         ?
+                         data.description_raw
+                         &&
                          <div className='detailGame__description--container'>
                               <p className='detailGame__description'>{data.description_raw}</p>
                               {/* Limité a 5/6 ligne et ajouter un btn */}
                          </div>
-                         :
-                         <></>
                     }
 
                     <Gallery id={id} />
                     
                     {
-                         data.platforms[0]?.requirements.minimum ||  data.platforms[0]?.requirements.recommended ?
+                         (data.platforms[0]?.requirements.minimum ||  data.platforms[0]?.requirements.recommended)
+                         &&
                          <div className='detailGame__requirements-container'>
                               <Collapse titre="Config minimum" content={data.platforms[0].requirements.minimum}/>
                               <Collapse titre="Config recommandé" content={data.platforms[0].requirements.recommended}/>
                          </div>
-                         :
-                         <></>
                     }
                     
                </div>

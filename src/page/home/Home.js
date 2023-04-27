@@ -12,9 +12,8 @@ export default function Home() {
   const loadGameRelease = useLoadOrderingGameData("released")
   const gameReleaseResults = loadGameRelease.data.results
 
-  const loadGameOrdering = useLoadOrderingGameData("metacritic") // ordered ne marche pas ?
+  const loadGameOrdering = useLoadOrderingGameData("ordered") // ordered ne marche pas ?
   const gameOrdering = loadGameOrdering.data.results
-
 
 
   return (
@@ -22,7 +21,7 @@ export default function Home() {
       <Searchbar/>
 
       {/* Chargement du premier slider */}
-      {
+      {/* {
       !loadGameRelease.loading &&
       !loadGameRelease.error ? 
         <Slider titre="Découvrez les dernières nouveautés" imgs={gameReleaseResults}/>
@@ -30,14 +29,14 @@ export default function Home() {
         <Loader/>
       }
 
-      {/* Chargement du deuxieme slider */}
+      {/* Chargement du deuxieme slider
       {
       !loadGameOrdering.loading &&
       !loadGameOrdering.error ? 
         <Slider titre="Les mieux notés" imgs={gameOrdering}/>
       :
         <Loader/>
-      }    
+      }     */}
     </div>
   )
 }

@@ -7,7 +7,7 @@ export default function LinearRating({value}) {
           <defs>
             <linearGradient id="progress" x1="0" y1="1" x2="0" y2="0">
               <stop id="stop1" offset="0" stop-color="#ffff00"/>
-              <stop id="stop2" offset={value} stop-color="#fff"/>
+              <stop id="stop2" offset={`${value}%`} stop-color="#fff"/>
             </linearGradient>
           </defs>
 

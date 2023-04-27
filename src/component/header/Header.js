@@ -12,8 +12,6 @@ export default function Header() {
       <Link to="/" className='header__logo-container'>
           <img src={Logo} alt="Game preview "/>
       </Link>
-      
-      <Navbar />
     </header>
   )
 }

@@ -20,9 +20,8 @@ export default function Card(props) {
     <div className='card' onMouseEnter={(e)=>handleMouseEnter(e)} onMouseLeave={(e)=>handleMouseLeave(e)}>
         <Link to={"/game/" + props.id} className='card__img-container'>
             {  
-               props.background ?
-                    <img src={props.background} alt={`background de ${props.name}`} />
-               :    <></>
+               props.background &&
+               <img src={props.background} alt={`background de ${props.name}`} />
             }
         </Link>
         <div className='card__infos--container'>
@@ -31,11 +30,10 @@ export default function Card(props) {
                </div>
                <div className='card__infos--more'>
                     {
-                         props.platforms?.length > 0 ?
+                         props.platforms?.length > 0 &&
                          props.platforms.map((platform, index)=>{
                               return <Tag tag={platform.platform.name} key={index} type="platform"/>
                          })
-                         : <></>
                     }
                </div>
         </div>
